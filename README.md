@@ -27,3 +27,6 @@ Optional parameters:
 * package-folder:"The folder prefix where the project file is. Defaults to ./"
 * version-suffix: "The version suffix to append to the package version. This value will be ignored if the package Version is specified. Defaults to empty string."
 * version: "The package version. This value will override Version in *.csproj. Defaults to empty string."
+
+
+dsadsa
