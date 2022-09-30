@@ -36,31 +36,50 @@ runs:
       with:
         nuget-version: 5.9.1
     - name: Auth NuGet
-      run: nuget sources add -Name ${{ inputs.nuget-feed-source }} -Source ${{ inputs.nuget-feed-url }} -username ${{ inputs.username }} -password ${{ inputs.password }}
       shell: bash
+      run: |
+        nuget sources add \
+          -Name "${{ inputs.nuget-feed-source }}" \
+          -Source "${{ inputs.nuget-feed-url }}" \
+          -username "${{ inputs.username }}" \
+          -password "${{ inputs.password }}"
 
     - name: Add Dotnet NuGet Sources
-      run: dotnet nuget add source ${{ inputs.nuget-feed-url }} -n "GitHubPackages" -u ${{ inputs.username }} -p ${{ inputs.password }} --store-password-in-clear-text
       shell: bash
+      run: |
+        dotnet nuget add source "${{ inputs.nuget-feed-url }}" \
+          -n "GitHubPackages" \
+          -u "${{ inputs.username }}" \
+          -p "${{ inputs.password }}" \
+          --store-password-in-clear-text
 
     - name: Dotnet Restore ${{ inputs.package-project }}
-      run: dotnet restore ${{ inputs.package-project }} 
-      working-directory: ${{ inputs.package-folder }}
       shell: bash
+      working-directory: ${{ inputs.package-folder }}
+      run: |
+        dotnet restore "${{ inputs.package-project }}"
 
     - name: Dotnet Build ${{ inputs.package-project }}
-      run: dotnet build ${{ inputs.package-project }} -c Release
-      working-directory: ${{ inputs.package-folder }}
       shell: bash
+      working-directory: ${{ inputs.package-folder }}
+      run: |
+        dotnet build "${{ inputs.package-project }}" \
+          -c Release
 
     - name: Nuget Pack ${{ inputs.package-project }}
-      run: >
-        dotnet pack --configuration Release --output "/tmp" ${{ inputs.package-project }} --version-suffix "${{ inputs.version-suffix }}" --verbosity normal
-        $([ -z "${{ inputs.version }}" ] || echo "/p:version=${{ inputs.version }}")
-      shell: bash       
+      shell: bash
       working-directory: ${{ inputs.package-folder }}
+      run: |
+        dotnet pack \
+          --configuration Release \
+          --output "/tmp" "${{ inputs.package-project }}" \
+          --version-suffix "${{ inputs.version-suffix }}" \
+          --verbosity normal
+        $([ -z "${{ inputs.version }}" ] || echo "/p:version=${{ inputs.version }}")
 
     - name: Nuget Push
-      run: |
-        nuget push "/tmp/*.nupkg" ${{ inputs.password }} -src ${{ inputs.nuget-feed-source }} -SkipDuplicate
       shell: bash
+      run: |
+        nuget push "/tmp/*.nupkg" "${{ inputs.password }}" \
+          -src "${{ inputs.nuget-feed-source }}" \
+          -SkipDuplicate
