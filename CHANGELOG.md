@@ -1,3 +1,9 @@
+# :confetti_ball: 0.1.3 (2022-12-20T14:35:00.038Z)
+- - -
+## :bug: Fixes
+* SPT-513 - Upgraded NuGet/setup-nuget action to v1.1.1 (#4)
+- - -
+- - -
 # :confetti_ball: 0.1.2 (2022-09-30T20:33:01.409Z)
 - - -
 ## :bug: Fixes
