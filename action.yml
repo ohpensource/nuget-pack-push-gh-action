@@ -74,8 +74,8 @@ runs:
           --configuration Release \
           --output "/tmp" "${{ inputs.package-project }}" \
           --version-suffix "${{ inputs.version-suffix }}" \
-          --verbosity normal
-        $([ -z "${{ inputs.version }}" ] || echo "/p:version=${{ inputs.version }}")
+          --verbosity normal \
+          $([ -z "${{ inputs.version }}" ] || echo "/p:version=${{ inputs.version }}")
 
     - name: Nuget Push
       shell: bash
