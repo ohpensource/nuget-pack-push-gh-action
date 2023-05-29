@@ -1,3 +1,9 @@
+# :confetti_ball: 0.1.4 (2023-05-29T12:55:24.791Z)
+- - -
+## :bug: Fixes
+* LANZ-3914 fix error in the dotnet pack command. This `$([ -z "${{ inputs.version }}" ] || echo "/p:version=${{ inputs.version }}")` is part of dot net pack. (#5)
+- - -
+- - -
 # :confetti_ball: 0.1.3 (2022-12-20T14:35:00.038Z)
 - - -
 ## :bug: Fixes
