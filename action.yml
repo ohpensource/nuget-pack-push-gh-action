@@ -71,6 +71,8 @@ runs:
       working-directory: ${{ inputs.package-folder }}
       run: |
         dotnet pack \
+          --include-symbols \
+          --include-source \
           --configuration Release \
           --output "/tmp" "${{ inputs.package-project }}" \
           --version-suffix "${{ inputs.version-suffix }}" \
