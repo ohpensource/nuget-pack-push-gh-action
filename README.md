@@ -1,5 +1,7 @@
 # nuget-pack-push-gh-action
 
+GitHub action automatically include symbols and source files in the nuget package.
+
 ```yml
 name: CD
 on:
