@@ -1,6 +1,6 @@
 # nuget-pack-push-gh-action
 
-GitHub action automatically include symbols and source files in the nuget package.
+GitHub action automatically creates also .snupkg with debug symbols (.pdb) next to the nuget package (.nupkg) file.
 
 ```yml
 name: CD
