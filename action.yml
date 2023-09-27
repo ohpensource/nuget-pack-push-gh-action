@@ -29,7 +29,7 @@ inputs:
     required: false
     default: ""
   include-symbols:
-    description: "Whether to generated .snupkg file with debug symbols."
+    description: "Whether to generate .snupkg file with debug symbols."
     required: false
     default: "false"
 runs: 
