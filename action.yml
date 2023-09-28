@@ -28,6 +28,10 @@ inputs:
     description: "The package version. This value will override Version in *.csproj. Defaults to empty string."
     required: false
     default: ""
+  include-symbols:
+    description: "Whether to generate .snupkg file with debug symbols."
+    required: false
+    default: false
 runs: 
   using: "composite"
   steps:
@@ -71,6 +75,9 @@ runs:
       working-directory: ${{ inputs.package-folder }}
       run: |
         dotnet pack \
+          --no-build \
+          $([ -z "${{ inputs.include-symbols }}" ] || echo "-p:IncludeSymbols=${{ include-symbols }}") \
+          -p:SymbolPackageFormat=snupkg \
           --configuration Release \
           --output "/tmp" "${{ inputs.package-project }}" \
           --version-suffix "${{ inputs.version-suffix }}" \

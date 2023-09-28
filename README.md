@@ -1,5 +1,7 @@
 # nuget-pack-push-gh-action
 
+GitHub action automatically creates also .snupkg with debug symbols (.pdb) next to the nuget package (.nupkg) file.
+
 ```yml
 name: CD
 on:
@@ -21,10 +23,11 @@ jobs:
             username: your-username
             password: ${{ secrets.YOUR_PASSWORD }}
             package-project: Project.Name
+            include-symbols: true
 ```
 
 Optional parameters:
-* package-folder:"The folder prefix where the project file is. Defaults to ./"
+* package-folder: "The folder prefix where the project file is. Defaults to ./"
 * version-suffix: "The version suffix to append to the package version. This value will be ignored if the package Version is specified. Defaults to empty string."
 * version: "The package version. This value will override Version in *.csproj. Defaults to empty string." 
-
+* include-symbols: "Whether to generate .snupkg file with debug symbols (PDB file). Defaults to false."
