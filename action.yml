@@ -70,12 +70,15 @@ runs:
       shell: bash
       working-directory: ${{ inputs.package-folder }}
       run: |
-        dotnet pack \
+        myversion="/p:version=${{ inputs.version }}${{ inputs.version-suffix }}"
+        if [ -z "${{ inputs.version }}" ]; then
+          myversion=""
+        fi
+        echo "$myversion"
+        dotnet pack "${{ inputs.package-project }}" $myversion \
           --configuration Release \
-          --output "/tmp" "${{ inputs.package-project }}" \
-          --version-suffix "${{ inputs.version-suffix }}" \
-          --verbosity normal \
-          $([ -z "${{ inputs.version }}" ] || echo "/p:version=${{ inputs.version }}")
+          --output "/tmp"  \          
+          --verbosity normal           
 
     - name: Nuget Push
       shell: bash
