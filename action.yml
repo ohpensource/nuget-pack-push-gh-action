@@ -72,10 +72,9 @@ runs:
       run: |
         dotnet pack \
           --configuration Release \
-          --output "/tmp" "${{ inputs.package-project }}" \
-          --version-suffix "${{ inputs.version-suffix }}" \
+          --output "/tmp" "${{ inputs.package-project }}" \          
           --verbosity normal \
-          $([ -z "${{ inputs.version }}" ] || echo "/p:version=${{ inputs.version }}")
+          $([ -z "${{ inputs.version }}${{ inputs.version-suffix }}" ] || echo "/p:version=${{ inputs.version }}${{ inputs.version-suffix }}")
 
     - name: Nuget Push
       shell: bash
