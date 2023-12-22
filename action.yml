@@ -78,9 +78,9 @@ runs:
         dotnet pack "${{ inputs.package-project }}" \
           --configuration Release \
           --output "/tmp"  \          
-          --verbosity normal 
-          $myversion
-  
+          --verbosity normal \
+          $myversion          
+
     - name: Nuget Push
       shell: bash
       run: |
