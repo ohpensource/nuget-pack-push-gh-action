@@ -75,11 +75,10 @@ runs:
           myversion=""
         fi
         echo "$myversion"
-        dotnet pack "${{ inputs.package-project }}" \
+        dotnet pack "${{ inputs.package-project }}" $myversion \
           --configuration Release \
           --output "/tmp"  \          
-          --verbosity normal \
-          $myversion          
+          --verbosity normal           
 
     - name: Nuget Push
       shell: bash
