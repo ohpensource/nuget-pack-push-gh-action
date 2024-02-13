@@ -32,7 +32,7 @@ runs:
   using: "composite"
   steps:
     - name: Setup NuGet.exe
-      uses: NuGet/setup-nuget@v1.1.1
+      uses: NuGet/setup-nuget@v2
       with:
         nuget-version: 5.9.1
     - name: Auth NuGet
